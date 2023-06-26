@@ -84,4 +84,16 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+            echo 'slack notifications'
+            slackSend channel: '#cicd',
+                color: COLOR_MAP[currentBuild.currentResult],
+                message: "*${currentBuild.currentResult}:* Job ${enc.JOB_NAME} build: ${env.BUILD_NUMBER} \n more info at: ${env.BUILD_URL}"
+        }
+    }
 }
+def COLOR_MAP = [
+    'SUCCESS': 'good',
+    'FAILURE': 'danger',
+]
