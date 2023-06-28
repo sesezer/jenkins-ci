@@ -17,7 +17,7 @@ pipeline {
         NEXUSIP = "192.168.56.10"
         NEXUSPORT = "8081"
         NEXUS_GRP_REPO = "vprofile-group"
-        NEXUS_LOGIN = "nexuslogin"
+        NEXUS_LOGIN = 'nexuslogin'
         SONARSERVER = 'sonarserver'
         SONARSCANNER = 'sonarscanner'
     }
