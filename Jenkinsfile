@@ -12,7 +12,7 @@ pipeline {
         SNAP_REPO = "vprofile-snapshot"
         NEXUS_USER = "admin"
         NEXUS_PASS = "sezersezer"
-        NEXUS_REPO = "vporfile-release"
+        NEXUS_REPO = "vprofile-repo"
         CENTRAL_REPO = "vprofile-maven-central"
         NEXUSIP = "192.168.56.10"
         NEXUSPORT = "8081"
