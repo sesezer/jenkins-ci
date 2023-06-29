@@ -20,6 +20,7 @@ pipeline {
         NEXUS_LOGIN = 'nexuslogin'
         SONARSERVER = 'sonarserver'
         SONARSCANNER = 'sonarscanner'
+        REGISTRY = 'docker-hub'
     }
 
     stages {
@@ -86,7 +87,22 @@ pipeline {
                     ]
                 )
             }
+            
         }
+        stage('Build and Publish Docker Image') {
+            steps {
+                // Build the Docker image
+                script {
+                def dockerImage = docker.build("sezrsezr/vprofile:${env.BUILD_ID}--${env.BUILD_TIMESTAMP}", '-f ./Docker-files/app/multistage/Dockerfile .')
+
+                // Log in to Docker Hub
+                docker.withRegistry('https://registry.hub.docker.com', "${REGISTRY}") {
+                    // Push the Docker image to Docker Hub
+                    dockerImage.push()
+          }
+        }
+      }
+    }
     }
     post {
         always {
