@@ -97,7 +97,7 @@ pipeline {
 
                 // Log in to Docker Hub
                 docker.withRegistry('https://registry.hub.docker.com', "${REGISTRY}") {
-                    // Push the Docker image to Docker Hub
+                    
                     dockerImage.push()
           }
         }
