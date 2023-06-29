@@ -93,7 +93,7 @@ pipeline {
             steps {
                 // Build the Docker image
                 script {
-                def dockerImage = docker.build("sezrsezr/vprofile:${env.BUILD_ID}--${env.BUILD_TIMESTAMP}", '-f ./Docker-files/app/multistage/Dockerfile .')
+                def dockerImage = docker.build("sezrsezr/vprofile:v${env.BUILD_ID}", '-f ./Docker-files/app/multistage/Dockerfile .')
 
                 // Log in to Docker Hub
                 docker.withRegistry('https://registry.hub.docker.com', "${REGISTRY}") {
