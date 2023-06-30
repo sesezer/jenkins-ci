@@ -20,7 +20,7 @@ pipeline {
         NEXUS_LOGIN = 'nexuslogin'
         SONARSERVER = 'sonarserver'
         SONARSCANNER = 'sonarscanner'
-        REGISTRY = 'docker-hub'
+        REGISTRY_CREDENTIAL = 'docker-hub'
     }
 
     stages {
@@ -96,9 +96,10 @@ pipeline {
                 def dockerImage = docker.build("sezrsezr/vprofile:v${env.BUILD_ID}", '-f ./Docker-files/app/multistage/Dockerfile .')
 
                 // Log in to Docker Hub
-                docker.withRegistry('https://registry.hub.docker.com', "${REGISTRY}") {
+                docker.withRegistry('https://registry.hub.docker.com', "${REGISTRY_CREDENTIAL}") {
                     
                     dockerImage.push()
+                    dockerImage.push("latest")
           }
         }
       }
