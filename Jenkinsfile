@@ -22,7 +22,7 @@ pipeline {
         SONARSCANNER = 'sonarscanner'
         REGISTRY_CREDENTIAL = 'docker-hub'
         AWS_CREDENTIAL = 'ecs'
-        AWS_REGION = 'us-west-1'
+        AWS_REGION = 'eu-west-1'
         ECS_CLUSTER = 'vprofiletest'
         ECS_SERVICE = 'vprofiletestservice'
         DOCKER_IMAGE = 'sezrsezr/vprofile:latest'
@@ -112,7 +112,7 @@ pipeline {
         stage('deploy container to testenv') {
             steps {
                 script {
-                    withAWS(credentials: 'ecs', region: 'us-west-1') {
+                    withAWS(credentials: 'ecs', region: 'eu-west-1') {
                         sh "aws ecs update-service --cluster ${ECS_CLUSTER} --service ${ECS_SERVICE} --force-new-deployment"
                     }
                 }
