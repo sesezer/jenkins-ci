@@ -23,14 +23,14 @@ pipeline {
         REGISTRY_CREDENTIAL = 'docker-hub'
         AWS_CREDENTIAL = 'ecs'
         AWS_REGION = 'eu-west-1'
-        ECS_CLUSTER = 'vprofiletest'
-        ECS_SERVICE = 'vprofiletestservice'
+        ECS_CLUSTER = 'vprofileProd'
+        ECS_SERVICE = 'vprofileProdservice'
         DOCKER_IMAGE = 'sezrsezr/vprofile:latest'
     }
 
     stages {
         
-        stage('deploy container to testenv') {
+        stage('deploy container to prodenv') {
             steps {
                 script {
                     withAWS(credentials: 'ecs', region: 'eu-west-1') {
